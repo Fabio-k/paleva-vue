@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paleva</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <main>
+        <section>
+          <h1>Pedidos</h1>
+          <ul class="orderList">
+            <li v-for="order in orders" v-on:click="getOrder(order.code)">
+              <section
+                :class="{orderItem: true, active: order_data && order.code == order_data.code}"
+              >
+                <div class="orderTitle">
+                  <p>{{order.code}}</p>
+                  <p>{{order.client.name}}</p>
+                </div>
+
+                <p
+                  :class="{orderStatus:true, waitingConfirmation: order.status == 'Aguardando confirmação da cozinha', inProgress: order.status == 'em preparação', ready: order.status == 'pronto'}"
+                >
+                  {{order.status}}
+                </p>
+              </section>
+
+              <p>{{order.entry_date}}</p>
+            </li>
+          </ul>
+        </section>
+
+        <section v-if="order_data != null" id="order-detail">
+          <div id="orderDetailHeader">
+            <div id="orderDetailTitle">
+              <p>{{order_data.code}}</p>
+              <p>{{order_data.client_name}}</p>
+            </div>
+            <p
+              :class="{orderStatus:true, waitingConfirmation: order_data.status == 'Aguardando confirmação da cozinha', inProgress: order_data.status == 'em preparação', ready: order_data.status == 'pronto'}"
+            >
+              {{order_data.status}}
+            </p>
+          </div>
+
+          <div id="orderDetailDateStatus">
+            <p>{{formatDate(order_data.entry_data)}}</p>
+            <button v-on:click="acceptOrder(order_data.code)">
+              Aceitar Pedido
+            </button>
+            <button v-on:click="markOrderAsReady(order_data.code)">
+              Marcar pedido como pronto
+            </button>
+          </div>
+
+          <h2>Itens</h2>
+          <ul>
+            <li v-for="item in order_data.items">
+              <p>{{item.name}} {{item.portion}}</p>
+              <p>{{item.note}}</p>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

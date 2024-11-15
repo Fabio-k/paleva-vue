@@ -1,0 +1,70 @@
+main {
+  display: flex;
+  gap: 50px;
+}
+
+#order-detail {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.orderList {
+  list-style: none;
+  padding: 0;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+.orderItem.active {
+  background-color: rgb(244, 244, 244);
+}
+
+.orderTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.orderStatus {
+  padding: 10px;
+  border-radius: 2px 4px;
+  margin: 0;
+}
+
+.orderStatus.waitingConfirmation {
+  background-color: orange;
+  color: white;
+}
+
+.orderStatus.inProgress {
+  background-color: yellow;
+}
+
+.orderStatus.ready {
+  background-color: greenyellow;
+  color: green;
+}
+
+#orderDetailHeader {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#orderDetailTitle {
+  display: flex;
+  gap: 40px;
+}
+
+#orderDetailDateStatus {
+  display: flex;
+  gap: 10px;
+}
