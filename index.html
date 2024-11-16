@@ -48,10 +48,16 @@
 
           <div id="orderDetailDateStatus">
             <p>{{formatDate(order_data.entry_data)}}</p>
-            <button v-on:click="acceptOrder(order_data.code)">
+            <button
+              v-on:click="acceptOrder(order_data.code)"
+              v-if="order_data.status == 'Aguardando confirmação da cozinha'"
+            >
               Aceitar Pedido
             </button>
-            <button v-on:click="markOrderAsReady(order_data.code)">
+            <button
+              v-on:click="markOrderAsReady(order_data.code)"
+              v-if="order_data.status == 'em preparação'"
+            >
               Marcar pedido como pronto
             </button>
           </div>

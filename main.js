@@ -20,6 +20,7 @@ const app = Vue.createApp({
       );
       const result = await response.json();
       this.orders = result.orders;
+      this.sortOrders();
       console.log(this.orders);
     },
 
@@ -69,6 +70,26 @@ const app = Vue.createApp({
       return `${date.toLocaleDateString(
         "pt-BR"
       )}  ${date.getHours()}:${date.getMinutes()}`;
+    },
+
+    sortOrders() {
+      this.orders.sort((a, b) => {
+        const statusOrder = [
+          "pronto",
+          "em preparação",
+          "Aguardando confirmação da cozinha",
+        ];
+        const statusA = statusOrder.indexOf(a.status);
+        const statusB = statusOrder.indexOf(b.status);
+
+        if (statusA !== statusB) {
+          return statusB - statusA;
+        }
+
+        const dateA = new Date(a.entry_date);
+        const dateB = new Date(b.entry_date);
+        return dateA - dateB;
+      });
     },
   },
 });

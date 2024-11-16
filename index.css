@@ -20,6 +20,11 @@ main {
   gap: 20px;
   padding: 0px 10px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.orderItem:hover {
+  background-color: rgb(244, 244, 244);
 }
 
 .orderItem.active {
