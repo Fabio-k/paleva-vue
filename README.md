@@ -1,6 +1,6 @@
 # Paleva Vue
 
-Interfáce para os funcionários da cozinha gerenciarem os pedidos da cozinha
+Interfáce para os funcionários da cozinha gerenciarem os pedidos
 
 # Como rodar o projeto
 
