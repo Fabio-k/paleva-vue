@@ -1,4 +1,4 @@
-const restaurant_code = "ABC123";
+const restaurant_code = CONFIG.restaurant_code;
 
 const app = Vue.createApp({
   data() {
@@ -88,7 +88,10 @@ const app = Vue.createApp({
 
         const dateA = new Date(a.entry_date);
         const dateB = new Date(b.entry_date);
-        return dateA - dateB;
+        if (dateA > dateB) {
+          return -1;
+        }
+        return 0;
       });
     },
   },
