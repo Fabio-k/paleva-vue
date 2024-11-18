@@ -41,6 +41,7 @@ main {
   padding: 10px;
   border-radius: 2px 4px;
   margin: 0;
+  font-weight: bold;
 }
 
 .orderStatus.waitingConfirmation {
@@ -70,6 +71,11 @@ main {
 }
 
 #orderDetailDateStatus {
+  display: flex;
+  gap: 10px;
+}
+
+.portionHeader {
   display: flex;
   gap: 10px;
 }

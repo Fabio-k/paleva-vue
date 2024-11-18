@@ -6,6 +6,8 @@ const app = Vue.createApp({
     return {
       orders: [],
       order_data: null,
+      show_cancel_form: false,
+      reason_message: null,
     };
   },
   methods: {
@@ -25,6 +27,7 @@ const app = Vue.createApp({
     },
 
     async getOrder(code) {
+      this.show_cancel_form = false;
       let response = await fetch(
         `http://localhost:4000/api/order?restaurant_code=${restaurant_code}&order_code=${code}`
       );
@@ -63,6 +66,25 @@ const app = Vue.createApp({
         this.order_data.status = "pronto";
         this.getOrders();
       }
+    },
+
+    async cancelOrder(code) {
+      let response = await fetch(
+        `http://localhost:4000/api/order/cancel?restaurant_code=${restaurant_code}&order_code=${code}&reason_message=${this.reason_message}`,
+        { method: "PATCH" }
+      );
+
+      const result = response.status;
+
+      console.log(result);
+      if (result == 200) {
+        this.order_data.status = "pronto";
+        this.getOrders();
+      }
+    },
+
+    toggleCancelOrder() {
+      this.show_cancel_form = true;
     },
 
     formatDate(dateString) {

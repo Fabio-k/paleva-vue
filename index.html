@@ -60,12 +60,36 @@
             >
               Marcar pedido como pronto
             </button>
+            <button
+              v-on:click="toggleCancelOrder()"
+              v-if="order_data.status != 'pronto'"
+            >
+              Cancelar Pedido
+            </button>
+          </div>
+
+          <div v-if="show_cancel_form">
+            <div>
+              <textarea
+                name=""
+                id=""
+                v-model="reason_message"
+                required
+                placeholder="Motivo do cancelamento"
+              ></textarea>
+            </div>
+
+            <button v-on:click="cancelOrder(order_data.code)">cancelar</button>
           </div>
 
           <h2>Itens</h2>
           <ul>
             <li v-for="item in order_data.items">
-              <p>{{item.name}} {{item.portion}}</p>
+              <div class="portionHeader">
+                <p>{{item.quantity}}</p>
+                <p>{{item.name}} {{item.portion}}</p>
+              </div>
+
               <p>{{item.note}}</p>
             </li>
           </ul>
