@@ -78,7 +78,7 @@ const app = Vue.createApp({
 
       console.log(result);
       if (result == 200) {
-        this.order_data.status = "pronto";
+        this.order_data = null;
         this.getOrders();
       }
     },

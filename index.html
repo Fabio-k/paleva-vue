@@ -11,7 +11,7 @@
       <main>
         <section>
           <h1>Pedidos</h1>
-          <ul class="orderList">
+          <ul>
             <li v-for="order in orders" v-on:click="getOrder(order.code)">
               <section
                 :class="{orderItem: true, active: order_data && order.code == order_data.code}"
